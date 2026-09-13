@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser")
 const cors = require("cors")
 
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
     credentials: true
 }))
 app.use(express.json());
@@ -28,5 +28,5 @@ connectDb().then(() => {
     })
 })   
 .catch((err) => {
-    console.error("Database connection cannot be established")
+    console.error("Database connection cannot be established:", err)
 })
