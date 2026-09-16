@@ -24,6 +24,10 @@ const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
 
+app.get("/", (req, res) => {
+    res.send("Welcome to DevTinder API Server!");
+});
+
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
