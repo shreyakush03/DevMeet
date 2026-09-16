@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -9,7 +10,7 @@ app.use(
         origin: [
             "http://localhost:5173",
             "http://127.0.0.1:5173",
-            process.env.FRONTEND_URL
+            process.env.FRONTEND_URL?.replace(/\/$/, "")
         ].filter(Boolean),
         credentials: true
     })
