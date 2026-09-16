@@ -28,10 +28,17 @@ app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
 
-app.get("/", (req, res) => {
-    res.json({
-        message: "DevTinder API is running"
+const connectDb = require("./config/database");
+
+connectDb()
+    .then(() => {
+        console.log("Database connection established");
+        app.listen(7777, () => {
+            console.log("Server is successfully listening on port 7777");
+        });
+    })
+    .catch((err) => {
+        console.error("Database connection failed:", err);
     });
-});
 
 module.exports = app;
