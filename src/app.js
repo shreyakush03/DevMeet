@@ -7,11 +7,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: [
-            "http://localhost:5173",
-            "http://127.0.0.1:5173",
-            process.env.FRONTEND_URL?.replace(/\/$/, "")
-        ].filter(Boolean),
+        origin: process.env.FRONTEND_URL,
         credentials: true
     })
 );
@@ -38,8 +34,11 @@ const connectDb = require("./config/database");
 connectDb()
     .then(() => {
         console.log("Database connection established");
-        app.listen(7777, () => {
-            console.log("Server is successfully listening on port 7777");
+
+        const PORT = process.env.PORT || 7777;
+
+        app.listen(PORT, () => {
+            console.log(`Server is successfully listening on port ${PORT}`);
         });
     })
     .catch((err) => {
